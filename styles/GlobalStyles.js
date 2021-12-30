@@ -90,15 +90,15 @@ const GlobalStyles = createGlobalStyle`
     --font-weight-normal: ${WEIGHTS.normal};
     --font-weight-medium: ${WEIGHTS.medium};
     --font-weight-bold: ${WEIGHTS.bold};
-    --font-sans: -apple-system, system-ui, sans-serif;
-    --font-serif: 'Besley', serif;
+    --font-sans-serif: 'Exo 2', sans-serif;
+    --font-cursive: 'Shizuru', cursive;
     --font-dyslexic: 'OpenDyslexic', sans-serif;
 	}
 
 	html, body, #__next {
     height: 100%;
     color: var(--color-text);
-    background-color: var(--color-background);
+    /* background-color:#fefae0; */
 	}
 `
 

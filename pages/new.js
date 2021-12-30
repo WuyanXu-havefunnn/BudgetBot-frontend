@@ -1,7 +1,3 @@
 export default function NewPage({}) {
-  return (
-    <main>
-      <h1>A new day, a new page!</h1>
-    </main>
-  )
+  return <div>this is a new new page</div>
 }
