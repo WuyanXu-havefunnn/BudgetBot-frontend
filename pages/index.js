@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react'
 import { VictoryPie } from 'victory-pie'
 import { QUERIES } from '../lib/constants'
 
-var base = new Airtable({ apiKey: process.env.API_KEY }).base(
-  process.env.BASE_ID,
+var base = new Airtable({ apiKey: process.env.NEXT_PUBLIC_API_KEY }).base(
+  process.env.NEXT_PUBLIC_BASE_ID,
 )
 
 const today = new Date()
