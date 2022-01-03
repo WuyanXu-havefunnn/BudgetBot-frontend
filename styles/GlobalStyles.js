@@ -90,7 +90,7 @@ const GlobalStyles = createGlobalStyle`
     --font-weight-normal: ${WEIGHTS.normal};
     --font-weight-medium: ${WEIGHTS.medium};
     --font-weight-bold: ${WEIGHTS.bold};
-    --font-sans-serif: 'Exo 2', sans-serif;
+    --font-sans-serif: 'Rubik', sans-serif;
     --font-cursive: 'Shizuru', cursive;
     --font-dyslexic: 'OpenDyslexic', sans-serif;
 	}

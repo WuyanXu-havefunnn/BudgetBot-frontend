@@ -96,7 +96,6 @@ const getPercetageOfEachCategory = (allRecordsForDuration) => {
     )
   }
 
-  // console.log(categoryWithPercentage)
   return categoryWithPercentage
 }
 
@@ -111,37 +110,8 @@ const getAllRecordsForDuration = async (duration) => {
     })
     .all()
 
-  console.log({ allRecordsForDuration })
-
   return allRecordsForDuration
 }
-
-// getTotalAmountForDuration('week')
-
-// const getTopFiveRecords = async (duration) => {
-//   const formula = filterByDuration(duration)
-//   // console.log({ formula })
-
-//   const allRecords = await base('Expenses')
-//     .select({
-//       maxRecords: 5,
-//       fields: ['Items', 'Amount', 'Date'],
-//       sort: [{ field: 'Amount', direction: 'desc' }],
-//       filterByFormula: formula,
-//     })
-//     .all()
-
-//   let topFiveItems = []
-//   for (let record of allRecords) {
-//     let item = {}
-//     item.description = record.fields.Items
-//     item.amount = record.fields.Amount.toFixed(2)
-//     item.id = record.id
-//     topFiveItems.push(item)
-//   }
-//   // console.log(topFiveItems)
-//   return topFiveItems
-// }
 
 export default function HomePage({}) {
   const [duration, setDuration] = useState('day')
@@ -160,7 +130,8 @@ export default function HomePage({}) {
   for (const category in categoryExpense) {
     if (categoryExpense[category] > 0) {
       myData.push({
-        x: `${category} $${categoryExpense[category]}`,
+        x: `${category}
+          $${categoryExpense[category]}`,
         y: categoryPercentage[category],
       })
     }
@@ -171,28 +142,30 @@ export default function HomePage({}) {
       <HeadingContainer>
         <Heading>Hi Wuyan 🙂</Heading>
         <Heading>
-          Your expense chart for the <TimeVar>{duration}</TimeVar> !
+          Check out your expense chart for the <TimeVar>{duration}</TimeVar> !
         </Heading>
       </HeadingContainer>
-
       <Pie>
-        <VictoryPie
-          data={myData}
-          colorScale={['#9bf6ff', '#ffc6ff', '#bdb2ff', '#caffbf', '#ffd6a5']}
-          radius={100}
-          height={400}
-          width={600}
-          style={{
-            data: {
-              fillOpacity: 0.9,
-              stroke: 'white',
-              strokeWidth: 2,
-            },
-            labels: {
-              fontSize: 14,
-            },
-          }}
-        />
+        {myData.length === 0 ? (
+          <p>It seems like there is no expense to display 🤪</p>
+        ) : (
+          <VictoryPie
+            data={myData}
+            colorScale={['#9bf6ff', '#ffc6ff', '#bdb2ff', '#caffbf', '#ffd6a5']}
+            radius={100}
+            width={410}
+            style={{
+              data: {
+                fillOpacity: 0.9,
+                stroke: 'white',
+                strokeWidth: 2,
+              },
+              labels: {
+                fontSize: 14,
+              },
+            }}
+          />
+        )}
       </Pie>
       <ButtonGroup>
         <Button onClick={() => setDuration('day')}>Day</Button>
@@ -209,20 +182,19 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 100px;
+  padding: 40px;
+  gap: 60px;
+  position: relative;
 
-  @media ${QUERIES.phoneAndSmaller} {
-    padding: 15px;
-  } ;
+  @media ${QUERIES.tabletAndBigger} {
+    padding: 100px;
+  }
 `
 
 const HeadingContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  @media ${QUERIES.phoneAndSmaller} {
-    padding: 30px 0px;
-  } ;
 `
 
 const Heading = styled.h1`
@@ -237,12 +209,18 @@ const TimeVar = styled.span`
 `
 
 const Pie = styled.div`
-  /* width: 70%; */
+  font-family: var(--font-sans-serif);
 `
 
 const ButtonGroup = styled.div`
   display: flex;
   gap: 30px;
+  position: absolute;
+  top: 550px;
+  @media ${QUERIES.tabletAndBigger} {
+    top: 650px;
+    gap: 50px;
+  }
 `
 
 const Button = styled.button`
