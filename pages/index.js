@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react'
 import { VictoryPie } from 'victory-pie'
 import { QUERIES } from '../lib/constants'
 
-var base = new Airtable({ apiKey: 'process.env.API_KEY' }).base(
-  'appuSqLyneHIkdtvH',
+var base = new Airtable({ apiKey: process.env.API_KEY }).base(
+  process.env.BASE_ID,
 )
 
 const today = new Date()
@@ -205,6 +205,7 @@ const TimeVar = styled.span`
   font-family: var(--font-cursive);
   font-size: ${20 / 16}rem;
   text-transform: uppercase;
+  color: #a63c06;
 `
 
 const Pie = styled.div`
