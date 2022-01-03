@@ -4,6 +4,7 @@ export default async function handler(req, res) {
   const { duration } = req.query
 
   const records = await getAllRecordsForDuration(duration)
+
   const categoryExpense = getTotalOfEachCategory(records)
 
   const categoryPercentage = getPercetageOfEachCategory(records)
@@ -62,6 +63,7 @@ const getAllRecordsForDuration = async (duration) => {
 
   return allRecordsForDuration
 }
+
 const getSum = (records) => {
   if (records.length > 0) {
     const sum = records.reduce(
