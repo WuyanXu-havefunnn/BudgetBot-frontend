@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { VictoryPie } from 'victory-pie'
 import { QUERIES } from '../lib/constants'
 
-var base = new Airtable({ apiKey: 'keyP1SbuDuLo1qPhM' }).base(
+var base = new Airtable({ apiKey: 'process.env.API_KEY' }).base(
   'appuSqLyneHIkdtvH',
 )
 
@@ -101,7 +101,6 @@ const getPercetageOfEachCategory = (allRecordsForDuration) => {
 
 const getAllRecordsForDuration = async (duration) => {
   const formula = filterByDuration(duration)
-  console.log({ formula })
 
   const allRecordsForDuration = await base('Expenses')
     .select({
@@ -245,10 +244,21 @@ const Button = styled.button`
   touch-action: manipulation;
 
   &:hover {
-    box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset,
-      rgba(44, 187, 99, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px,
-      rgba(44, 187, 99, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px,
-      rgba(44, 187, 99, 0.25) 0 16px 32px;
+    background-color: #ffd60a;
+    color: #a63c06;
+    box-shadow: rgba(255, 214, 10, 0.35) 0 -25px 18px -14px inset,
+      rgba(255, 214, 10, 0.25) 0 1px 2px, rgba(255, 214, 10, 0.25) 0 2px 4px,
+      rgba(255, 214, 10, 0.25) 0 4px 8px, rgba(255, 214, 10, 0.25) 0 8px 16px,
+      rgba(255, 214, 10, 0.25) 0 16px 32px;
     transform: scale(1.05) rotate(-1deg);
+  }
+
+  &:focus {
+    background-color: #ffd60a;
+    color: #a63c06;
+    box-shadow: rgba(255, 214, 10, 0.35) 0 -25px 18px -14px inset,
+      rgba(255, 214, 10, 0.25) 0 1px 2px, rgba(255, 214, 10, 0.25) 0 2px 4px,
+      rgba(255, 214, 10, 0.25) 0 4px 8px, rgba(255, 214, 10, 0.25) 0 8px 16px,
+      rgba(255, 214, 10, 0.25) 0 16px 32px;
   }
 `
