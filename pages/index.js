@@ -5,7 +5,7 @@ import { QUERIES } from '../lib/constants'
 
 export default function HomePage({}) {
   const [duration, setDuration] = useState('day')
-  const [categoryData, setCategoryData] = useState([])
+  const [categoryData, setCategoryData] = useState({})
 
   useEffect(async () => {
     const response = await fetch(`/api/expenses/${duration}`)
