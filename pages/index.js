@@ -2,48 +2,73 @@ import styled from 'styled-components'
 import { useEffect, useState } from 'react'
 import { VictoryPie } from 'victory-pie'
 import { QUERIES } from '../lib/constants'
+import { usePromiseTracker, trackPromise } from 'react-promise-tracker'
 
 export default function HomePage({}) {
   const [duration, setDuration] = useState('day')
   const [categoryData, setCategoryData] = useState([])
 
-  useEffect(async () => {
+  // { delay: 500 } → wait 500 milliseconds to display the spinner
+  // { delay: 500 } to prevent flickering when the component is loaded on high-speed connections.
+
+  // doc: function usePromiseTracker(outerConfig? : Config) : { promiseInProgress : boolean }
+  const { promiseInProgress } = usePromiseTracker({ delay: 500 })
+
+  const loadDataFromBackend = async () => {
     const response = await fetch(`/api/expenses/${duration}`)
     const categoryDataFromBackend = await response.json()
-
     setCategoryData(categoryDataFromBackend)
+  }
+
+  useEffect(() => {
+    trackPromise(loadDataFromBackend())
   }, [duration])
 
   return (
     <Wrapper>
       <HeadingContainer>
-        <Heading>Hi Wuyan 🙂</Heading>
+        <Heading>Hi Tracy 🙂</Heading>
         <Heading>
           Check out your expense chart for the <TimeVar>{duration}</TimeVar> !
         </Heading>
       </HeadingContainer>
       <Pie>
-        {categoryData.length === 0 ? (
-          <Message>Oops! No expense to display for the {duration} 🤪</Message>
+        {promiseInProgress ? (
+          '🐌 loading...'
         ) : (
-          <VictoryPie
-            data={categoryData}
-            colorScale={['#9bf6ff', '#ffc6ff', '#bdb2ff', '#caffbf', '#ffd6a5']}
-            radius={100}
-            width={410}
-            style={{
-              data: {
-                fillOpacity: 0.9,
-                stroke: 'white',
-                strokeWidth: 2,
-              },
-              labels: {
-                fontSize: 14,
-              },
-            }}
-          />
+          <div>
+            {categoryData.length === 0 ? (
+              <Message>
+                Oops! No expense to display for the {duration} 🤪
+              </Message>
+            ) : (
+              <VictoryPie
+                data={categoryData}
+                colorScale={[
+                  '#9bf6ff',
+                  '#ffc6ff',
+                  '#bdb2ff',
+                  '#caffbf',
+                  '#ffd6a5',
+                ]}
+                radius={100}
+                width={410}
+                style={{
+                  data: {
+                    fillOpacity: 0.9,
+                    stroke: 'white',
+                    strokeWidth: 2,
+                  },
+                  labels: {
+                    fontSize: 14,
+                  },
+                }}
+              />
+            )}
+          </div>
         )}
       </Pie>
+
       <ButtonGroup>
         <Button
           highlighted={duration === 'day'}
@@ -75,7 +100,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 25px;
-  padding: 60px 0;
+  padding: 80px 0;
   position: relative;
   overflow: none;
 
@@ -116,9 +141,9 @@ const ButtonGroup = styled.div`
   display: flex;
   gap: 30px;
   position: absolute;
-  top: 500px;
+  top: 650px;
   @media ${QUERIES.tabletAndBigger} {
-    top: 650px;
+    top: 600px;
     gap: 50px;
   }
 `
