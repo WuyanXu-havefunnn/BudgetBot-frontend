@@ -116,7 +116,7 @@ const ButtonGroup = styled.div`
   display: flex;
   gap: 30px;
   position: absolute;
-  top: 600px;
+  top: 500px;
   @media ${QUERIES.tabletAndBigger} {
     top: 650px;
     gap: 50px;
