@@ -21,6 +21,7 @@ export default function HomePage({}) {
   }
 
   useEffect(() => {
+    // will return the promise it's tracking
     trackPromise(loadDataFromBackend())
   }, [duration])
 
@@ -34,7 +35,7 @@ export default function HomePage({}) {
       </HeadingContainer>
       <Pie>
         {promiseInProgress ? (
-          '🐌 loading...'
+          <p>'🐌 loading...'</p>
         ) : (
           <div>
             {categoryData.length === 0 ? (
@@ -141,7 +142,7 @@ const ButtonGroup = styled.div`
   display: flex;
   gap: 30px;
   position: absolute;
-  top: 650px;
+  top: 500px;
   @media ${QUERIES.tabletAndBigger} {
     top: 600px;
     gap: 50px;
