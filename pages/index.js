@@ -127,10 +127,6 @@ const Button = styled.button`
   background-color: ${({ highlighted }) =>
     highlighted ? '#ffd60a' : '#c2fbd7'};
   border-radius: 100px;
-  /* box-shadow: rgba(44, 187, 99, 0.2) 0 -25px 18px -14px inset,
-    rgba(44, 187, 99, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px,
-    rgba(44, 187, 99, 0.15) 0 4px 8px, rgba(44, 187, 99, 0.15) 0 8px 16px,
-    rgba(44, 187, 99, 0.15) 0 16px 32px; */
   color: ${({ highlighted }) => (highlighted ? '#a63c06' : 'green')};
   cursor: pointer;
   display: inline-block;
@@ -148,10 +144,6 @@ const Button = styled.button`
   &:hover {
     background-color: #ffd60a;
     color: #a63c06;
-    box-shadow: rgba(255, 214, 10, 0.35) 0 -25px 18px -14px inset,
-      rgba(255, 214, 10, 0.25) 0 1px 2px, rgba(255, 214, 10, 0.25) 0 2px 4px,
-      rgba(255, 214, 10, 0.25) 0 4px 8px, rgba(255, 214, 10, 0.25) 0 8px 16px,
-      rgba(255, 214, 10, 0.25) 0 16px 32px;
     transform: scale(1.05) rotate(-1deg);
   }
 `
