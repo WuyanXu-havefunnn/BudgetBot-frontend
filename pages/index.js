@@ -13,7 +13,7 @@ export default function HomePage({}) {
 
   // doc: function usePromiseTracker(outerConfig? : Config) : { promiseInProgress : boolean }
   const { promiseInProgress } = usePromiseTracker({ delay: 500 })
-
+  // setTimeOut to implement myself
   const loadDataFromBackend = async () => {
     const response = await fetch(`/api/expenses/${duration}`)
     const categoryDataFromBackend = await response.json()
@@ -143,7 +143,7 @@ const ButtonGroup = styled.div`
   gap: 30px;
   position: absolute;
   top: 500px;
-  @media ${QUERIES.tabletAndBigger} {
+  @media ${QUERIES.phoneAndBigger} {
     top: 600px;
     gap: 50px;
   }
