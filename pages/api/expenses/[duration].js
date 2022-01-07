@@ -22,7 +22,6 @@ export default async function handler(req, res) {
   res.status(200).json(collectedCategoryData)
 }
 
-const today = new Date()
 const yesterday = new Date()
 yesterday.setDate(yesterday.getDate() - 1)
 yesterday.setHours(0, 0, 0, 0)
