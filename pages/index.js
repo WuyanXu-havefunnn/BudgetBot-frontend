@@ -105,7 +105,7 @@ const Wrapper = styled.div`
   position: relative;
   overflow: none;
 
-  @media ${QUERIES.tabletAndBigger} {
+  @media ${QUERIES.phoneAndBigger} {
     padding: 100px;
   }
 `
