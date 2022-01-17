@@ -48,8 +48,7 @@ export default function HomePage({}) {
         </Button>
       </ButtonGroup>
       <HeadingContainer>
-        {/* <Heading>Hi Tracy 🙂</Heading> */}
-        <Heading>Your expenses for the {duration}</Heading>
+        <Heading>Your expenses for the {duration} 😎</Heading>
       </HeadingContainer>
 
       <Pie>
