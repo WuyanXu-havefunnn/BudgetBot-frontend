@@ -27,49 +27,6 @@ export default function HomePage({}) {
 
   return (
     <Wrapper>
-      <HeadingContainer>
-        <Heading>Hi Tracy 🙂</Heading>
-        <Heading>
-          Check out your expense chart for the <TimeVar>{duration}</TimeVar> !
-        </Heading>
-      </HeadingContainer>
-      <Pie>
-        {promiseInProgress ? (
-          <p>'🐌 loading...'</p>
-        ) : (
-          <div>
-            {categoryData.length === 0 ? (
-              <Message>
-                Oops! No expense to display for the {duration} 🤪
-              </Message>
-            ) : (
-              <VictoryPie
-                data={categoryData}
-                colorScale={[
-                  '#9bf6ff',
-                  '#ffc6ff',
-                  '#bdb2ff',
-                  '#caffbf',
-                  '#ffd6a5',
-                ]}
-                radius={100}
-                width={410}
-                style={{
-                  data: {
-                    fillOpacity: 0.9,
-                    stroke: 'white',
-                    strokeWidth: 2,
-                  },
-                  labels: {
-                    fontSize: 14,
-                  },
-                }}
-              />
-            )}
-          </div>
-        )}
-      </Pie>
-
       <ButtonGroup>
         <Button
           highlighted={duration === 'day'}
@@ -90,6 +47,49 @@ export default function HomePage({}) {
           Month
         </Button>
       </ButtonGroup>
+      <HeadingContainer>
+        {/* <Heading>Hi Tracy 🙂</Heading> */}
+        <Heading>Your expenses for the {duration}</Heading>
+      </HeadingContainer>
+
+      <Pie>
+        {promiseInProgress ? (
+          <p>'🐌 ... 🐌 '</p>
+        ) : (
+          <div>
+            {categoryData.length === 0 ? (
+              <Message>
+                Oops! No expense to display for the {duration} 🤪
+              </Message>
+            ) : (
+              <VictoryPie
+                data={categoryData}
+                colorScale={[
+                  '#9bf6ff',
+                  '#ffc6ff',
+                  '#bdb2ff',
+                  '#caffbf',
+                  '#ffd6a5',
+                  '#ff7e6b',
+                  '#74d3c0',
+                ]}
+                radius={100}
+                width={420}
+                style={{
+                  data: {
+                    fillOpacity: 0.9,
+                    stroke: 'white',
+                    strokeWidth: 2,
+                  },
+                  labels: {
+                    fontSize: 14,
+                  },
+                }}
+              />
+            )}
+          </div>
+        )}
+      </Pie>
     </Wrapper>
   )
 }
@@ -100,9 +100,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 25px;
-  padding: 80px 0;
-  position: relative;
+  padding: 50px 0;
+  gap: 15px;
   overflow: none;
 
   @media ${QUERIES.phoneAndBigger} {
@@ -122,12 +121,6 @@ const Heading = styled.h1`
   font-size: 1rem;
   letter-spacing: 1px;
 `
-const TimeVar = styled.span`
-  font-family: var(--font-cursive);
-  font-size: ${20 / 16}rem;
-  text-transform: uppercase;
-  color: #c3500c;
-`
 
 const Message = styled.p`
   padding: 60px 40px;
@@ -135,16 +128,14 @@ const Message = styled.p`
 
 const Pie = styled.div`
   font-family: var(--font-sans-serif);
-  padding-right: 10px;
+  padding: 10px;
 `
 
 const ButtonGroup = styled.div`
   display: flex;
   gap: 30px;
-  position: absolute;
-  top: 500px;
+  margin-bottom: 60px;
   @media ${QUERIES.phoneAndBigger} {
-    top: 600px;
     gap: 50px;
   }
 `
@@ -158,6 +149,7 @@ const Button = styled.button`
   display: inline-block;
   font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
   padding: 7px 20px;
+  margin-top: 20px;
   text-align: center;
   text-decoration: none;
   transition: all 250ms;

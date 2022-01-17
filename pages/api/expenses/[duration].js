@@ -19,6 +19,7 @@ export default async function handler(req, res) {
       })
     }
   }
+  console.log(collectedCategoryData)
   res.status(200).json(collectedCategoryData)
 }
 
@@ -80,6 +81,39 @@ const getPercentage = (sumAll, sumCategory) => {
   return Math.round((sumCategory / sumAll) * 100)
 }
 
+// const getTotalOfEachCategory = (allRecordsForDuration) => {
+//   let totalOfCategory = {
+//     Food: 0,
+//     Transportation: 0,
+//     Other: 0,
+//     Shopping: 0,
+//     Lodging: 0,
+//     Reimbursesb: 0,
+//     Reimbursewx: 0,
+//   }
+
+//   for (const record of allRecordsForDuration) {
+//     const category = record.fields.Category
+//     const amount = Math.round(record.fields.Amount)
+//     if (category === 'Food') {
+//       totalOfCategory['Food'] += amount
+//     } else if (category === 'Transportation') {
+//       totalOfCategory['Transportation'] += amount
+//     } else if (category === 'Other') {
+//       totalOfCategory['Other'] += amount
+//     } else if (category === 'Lodging') {
+//       totalOfCategory['Lodging'] += amount
+//     } else if (category == 'Shopping') {
+//       totalOfCategory['Shopping'] += amount
+//     } else if (category == 'Reimbursesb') {
+//       totalOfCategory['Reimbursesb'] += amount
+//     } else if (category == 'Reimbursewx') {
+//       totalOfCategory['Reimbursewx'] += amount
+//     }
+//   }
+//   return totalOfCategory
+// }
+
 const getTotalOfEachCategory = (allRecordsForDuration) => {
   let totalOfCategory = {
     Food: 0,
@@ -87,6 +121,8 @@ const getTotalOfEachCategory = (allRecordsForDuration) => {
     Other: 0,
     Shopping: 0,
     Lodging: 0,
+    ReimburseHusband: 0,
+    ReimburseWife: 0,
   }
 
   for (const record of allRecordsForDuration) {
@@ -102,6 +138,10 @@ const getTotalOfEachCategory = (allRecordsForDuration) => {
       totalOfCategory['Lodging'] += amount
     } else if (category == 'Shopping') {
       totalOfCategory['Shopping'] += amount
+    } else if (category == 'ReimburseHusband') {
+      totalOfCategory['ReimburseHusband'] += amount
+    } else if (category == 'ReimburseWife') {
+      totalOfCategory['ReimburseWife'] += amount
     }
   }
   return totalOfCategory
